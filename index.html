@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="floating-food" style="top: 10%; left: 5%; animation-delay: 0s;">🍕</div>
+    <div class="floating-food" style="top: 30%; left: 90%; animation-delay: 2s;">🍔</div>
+    <div class="floating-food" style="top: 70%; left: 15%; animation-delay: 4s;">🍜</div>
+    <div class="floating-food" style="top: 50%; left: 80%; animation-delay: 6s;">🌮</div>
+    <div class="floating-food" style="top: 85%; left: 60%; animation-delay: 8s;">🍱</div>
+    <div class="floating-food" style="top: 15%; left: 50%; animation-delay: 10s;">🥗</div>
+    <div class="floating-food" style="top: 60%; left: 5%; animation-delay: 12s;">🍩</div>
+    <div class="floating-food" style="top: 40%; left: 30%; animation-delay: 14s;">🍦</div>
+
+    <canvas id="confetti-canvas"></canvas>
+    <div class="toast" id="toast"></div>
+
+    <div class="game-header">
+        <div class="game-logo">🍕 Delivery Adventure</div>
+        <div class="game-step" id="step-indicator">
+            <div class="step-dot active"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+        </div>
+    </div>
+
+    <!-- Screen 1: Intro -->
+    <div class="screen active" id="screen-intro">
+        <div class="glass-card" style="text-align: center; max-width: 600px;">
+            <div class="hungry-animation">🤤</div>
+            <h1 class="title">Food Rush</h1>
+            <p class="subtitle">Your stomach is growling... Time to order some delicious food!</p>
+            <div class="stomach-growl">*GRRRRUMBLE*</div>
+            <div style="margin-top: 40px;">
+                <button class="btn btn-primary" onclick="goToScreen('screen-character')">🚀 Start Your Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Character -->
+    <div class="screen" id="screen-character">
+        <div style="text-align: center; max-width: 900px; width: 100%;">
+            <h2 class="title" style="font-size: 2.5rem;">Who's Hungry?</h2>
+            <p class="subtitle">Choose your hungry character</p>
+            <div class="character-grid" id="character-grid">
+                <div class="character-card" onclick="selectCharacter(this, 'Adam', '😋👳🏾‍♀️')">
+                    <span class="character-emoji">😋👳🏾‍♀️</span>
+                    <div class="character-name">Adam</div>
+                    <div class="character-desc">"I'm starving!"</div>
+                </div>
+                <div class="character-card" onclick="selectCharacter(this, 'Maryam', '🤪🧕🏾')">
+                    <span class="character-emoji">🤪🧕🏾</span>
+                    <div class="character-name">Maryam</div>
+                    <div class="character-desc">"Food is life!"</div>
+                </div>
+                <div class="character-card" onclick="selectCharacter(this, 'Jordan', '🥴🧔🏾‍♀️')">
+                    <span class="character-emoji">🥴🧔🏾‍♀️</span>
+                    <div class="character-name">Jordan</div>
+                    <div class="character-desc">"So hungry..."</div>
+                </div>
+                <div class="character-card" onclick="selectCharacter(this, 'Sam', '😵👨🏾‍⚕️')">
+                    <span class="character-emoji">😵👨🏾‍⚕️</span>
+                    <div class="character-name">Sam</div>
+                    <div class="character-desc">"Need food NOW!"</div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToScreen('screen-intro')">⬅ Back</button>
+                <button class="btn btn-primary" id="btn-character-next" onclick="goToScreen('screen-restaurant')"
+                    disabled>Continue ➡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Restaurant -->
+    <div class="screen" id="screen-restaurant">
+        <div style="text-align: center; max-width: 1200px; width: 100%;">
+            <h2 class="title" style="font-size: 2.5rem;">Pick a Restaurant</h2>
+            <p class="subtitle">Where shall we order from today?</p>
+            <div class="restaurant-grid" id="restaurant-grid">
+                <div class="restaurant-card" onclick="selectRestaurant(this, 'Pizza Palace', '🍕')">
+                    <div class="restaurant-image">🍕</div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Pizza Palace</div>
+                        <div class="restaurant-meta"><span class="rating">⭐ 4.8</span><span>🕒 25-35 min</span><span>💰
+                                $$</span></div>
+                    </div>
+                </div>
+                <div class="restaurant-card" onclick="selectRestaurant(this, 'Burger Barn', '🍔')">
+                    <div class="restaurant-image">🍔</div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Burger Barn</div>
+                        <div class="restaurant-meta"><span class="rating">⭐ 4.6</span><span>🕒 20-30 min</span><span>💰
+                                $$</span></div>
+                    </div>
+                </div>
+                <div class="restaurant-card" onclick="selectRestaurant(this, 'Sushi Station', '🍱')">
+                    <div class="restaurant-image">🍱</div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Sushi Station</div>
+                        <div class="restaurant-meta"><span class="rating">⭐ 4.9</span><span>🕒 30-40 min</span><span>💰
+                                $$$</span></div>
+                    </div>
+                </div>
+                <div class="restaurant-card" onclick="selectRestaurant(this, 'Taco Town', '🌮')">
+                    <div class="restaurant-image">🌮</div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Taco Town</div>
+                        <div class="restaurant-meta"><span class="rating">⭐ 4.5</span><span>🕒 15-25 min</span><span>💰
+                                $</span></div>
+                    </div>
+                </div>
+                <div class="restaurant-card" onclick="selectRestaurant(this, 'Noodle Nook', '🍜')">
+                    <div class="restaurant-image">🍜</div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Noodle Nook</div>
+                        <div class="restaurant-meta"><span class="rating">⭐ 4.7</span><span>🕒 20-30 min</span><span>💰
+                                $$</span></div>
+                    </div>
+                </div>
+                <div class="restaurant-card" onclick="selectRestaurant(this, 'Sweet Spot', '🍩')">
+                    <div class="restaurant-image">🍩</div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Sweet Spot</div>
+                        <div class="restaurant-meta"><span class="rating">⭐ 4.8</span><span>🕒 15-20 min</span><span>💰
+                                $</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToScreen('screen-character')">⬅ Back</button>
+                <button class="btn btn-primary" id="btn-restaurant-next" onclick="loadMenu()" disabled>View Menu
+                    ➡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Menu -->
+    <div class="screen" id="screen-menu">
+        <div style="text-align: center; max-width: 1000px; width: 100%;">
+            <h2 class="title" style="font-size: 2.5rem;" id="menu-title">Menu</h2>
+            <p class="subtitle">Select your favorite dishes</p>
+            <div class="menu-grid" id="menu-grid"></div>
+            <div class="cart-summary" id="cart-summary" style="display: none;">
+                <h3 style="margin-bottom: 15px;">🛒 Your Order</h3>
+                <div id="cart-items"></div>
+                <div class="cart-total"><span>Total:</span><span id="cart-total-price">$0.00</span></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToScreen('screen-restaurant')">⬅ Back</button>
+                <button class="btn btn-primary" id="btn-menu-next" onclick="placeOrder()" disabled>Place Order
+                    ➡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Confirm -->
+    <div class="screen" id="screen-confirm">
+        <div style="text-align: center; max-width: 600px; width: 100%;">
+            <h2 class="title" style="font-size: 2.5rem;">Order Confirmed! 🎉</h2>
+            <p class="subtitle">Your delicious meal is being prepared</p>
+            <div class="order-summary-card">
+                <div class="summary-row"><span>👤 Character</span><span id="confirm-character">-</span></div>
+                <div class="summary-row"><span>🏪 Restaurant</span><span id="confirm-restaurant">-</span></div>
+                <div class="summary-row"><span>🍽️ Items</span><span id="confirm-items">-</span></div>
+                <div class="summary-row"><span>💵 Total</span><span id="confirm-total">-</span></div>
+                <div class="summary-row"><span>⏱️ Est. Time</span><span id="confirm-time">-</span></div>
+            </div>
+            <div class="spinner" id="prep-spinner"></div>
+            <p id="prep-text" style="margin-top: 15px; color: rgba(255,255,255,0.7);">Chef is cooking your meal...</p>
+            <div class="nav-buttons" id="confirm-buttons" style="display: none;">
+                <button class="btn btn-primary" onclick="startDelivery()">🚴 Track Delivery ➡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 6: Tracking -->
+    <div class="screen" id="screen-tracking">
+        <div style="text-align: center; max-width: 900px; width: 100%;">
+            <h2 class="title" style="font-size: 2.5rem;">Delivery in Progress</h2>
+            <p class="subtitle">Watch your food journey to your door</p>
+            <div class="tracking-container">
+                <div class="status-text" id="tracking-status">🍳 Preparing your order...</div>
+                <div class="map-area">
+                    <div class="map-road"></div>
+                    <div class="location-marker restaurant">🏪</div>
+                    <div class="location-marker home">🏠</div>
+                    <div class="delivery-bike" id="delivery-bike">🛵</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="eta-display" id="eta-display">25:00</div>
+                <p style="color: rgba(255,255,255,0.7);">Estimated arrival time</p>
+            </div>
+            <div class="nav-buttons" id="tracking-buttons" style="display: none;">
+                <button class="btn btn-primary" onclick="showDelivery()">🎁 Your Food Arrived! ➡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 7: Delivery -->
+    <div class="screen" id="screen-delivery">
+        <div style="text-align: center; max-width: 600px; width: 100%;">
+            <h2 class="celebration-text">🎉 Your Food is Here! 🎉</h2>
+            <p class="subtitle">The moment you've been waiting for!</p>
+            <div class="door-scene">
+                <div class="door-frame">
+                    <div class="door-inner">
+                        <div class="door-knob"></div>
+                    </div>
+                </div>
+                <div class="delivery-person" id="delivery-person">🛵</div>
+                <div class="food-bag" id="food-bag" style="display: none;">🥡</div>
+            </div>
+            <div class="receipt" id="final-receipt">
+                <div class="receipt-title">🧾 ORDER RECEIPT</div>
+                <div id="receipt-content"></div>
+            </div>
+            <div style="margin-top: 30px;">
+                <p style="font-size: 1.2rem; margin-bottom: 15px;">How was your delivery?</p>
+                <div class="stars" id="rating-stars">
+                    <span class="star" onclick="rate(1)">⭐</span><span class="star" onclick="rate(2)">⭐</span>
+                    <span class="star" onclick="rate(3)">⭐</span><span class="star" onclick="rate(4)">⭐</span>
+                    <span class="star" onclick="rate(5)">⭐</span>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-primary" onclick="playAgain()">🔄 Order Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="init.js"></script>
+</body>
+
+</html>
