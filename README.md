@@ -32,7 +32,9 @@ python3 -m http.server 8000
 # then open http://localhost:8000 in your browser
 
 npx http-server -c-1 .  # or `npx serve .`
+```
 
+Then navigate to `http://localhost:8000` and click through the sidebar navigation to explore all pages.
 ## 👤 Author
 
 **Osman Adam**
