@@ -14,3 +14,27 @@ Delivery Adventure is a small, browser-based interactive micro-game that simulat
 - Notable APIs: Canvas (confetti), Web Audio API, Google Fonts (Poppins)
 
 ## Project layout
+
+How it fits together:
+- index.html contains the UI screens and links to style.css and init.js.
+- style.css defines visuals, animations and layout for the various screens.
+- init.js holds the `gameState`, menus data and the functions that drive screen transitions, ordering, delivery tracking, audio, and confetti.
+
+## How to run
+The app is static—open it in any modern browser. For best results (and to avoid CORS/autoplay quirks), serve it from a local HTTP server.
+
+Open directly:
+```bash
+# From your file manager or:
+open index.html
+# Python 3
+python3 -m http.server 8000
+# then open http://localhost:8000 in your browser
+
+npx http-server -c-1 .  # or `npx serve .`
+
+## 👤 Author
+
+**Osman Adam**
+- GitHub: [@osmanadam-dev](https://github.com/osmanadam-dev)
+- Portfolio: [lnk.bio/osmanadam-dev](https://lnk.bio/osmanadam-dev)
