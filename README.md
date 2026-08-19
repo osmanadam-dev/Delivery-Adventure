@@ -38,5 +38,4 @@ Then navigate to `http://localhost:8000` and click through the sidebar navigatio
 ## 👤 Author
 
 **Osman Adam**
-- GitHub: [@osmanadam-dev](https://github.com/osmanadam-dev)
 - Portfolio: [lnk.bio/osmanadam-dev](https://lnk.bio/osmanadam-dev)
